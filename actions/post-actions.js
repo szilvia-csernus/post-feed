@@ -44,10 +44,11 @@ export async function createPost(prevState, formData) {
     userId: 1, // dummy user ID
   });
 
+  revalidatePath("/", "layout");
   redirect("/feed");
 }
 
 export async function togglePostLikeStatus(postId) {
   await updatePostLikeStatus(postId, 2); // hardcoded user ID, different from the one used in the storePost function
-  revalidatePath('/feed');
+  revalidatePath('/', 'layout');
 }
