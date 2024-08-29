@@ -1,6 +1,6 @@
 # Post Feed
 
-### Walkthrough Project created as part of [Maximilian Schwarzmüller's Next.js 14 course](https://www.udemy.com/course/nextjs-react-the-complete-guide/), showcasing data manipulation, inc. optimistic component updates.
+### Walkthrough Project created as part of [Maximilian Schwarzmüller's Next.js 14 course](https://www.udemy.com/course/nextjs-react-the-complete-guide/), showcasing data manipulation (inc. optimistic component updates), image optimisataion and metadata settings.
 
 ![landing-page](readme-images/landing-page.png)
 
@@ -11,7 +11,14 @@ This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next
 
 ## How to run the project
 
-First, clone the project then run the development server:
+First, use or create a cloudinary account and add your credentialt to a local `env.local` file:
+```
+CLOUDINARY_CLOUD_NAME=
+CLOUDINARY_API_KEY=
+CLOUDINARY_API_SECRET=
+```
+
+Then, clone the project then run the development server:
 
 ```bash
 npm run dev
