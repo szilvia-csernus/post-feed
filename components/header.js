@@ -1,11 +1,18 @@
-import logo from '@/assets/logo.png';
-import Link from 'next/link';
+import logo from "@/assets/logo.png";
+import Link from "next/link";
+import Image from "next/image";
 
 export default function Header() {
   return (
     <header id="main-header">
       <Link href="/">
-        <img src={logo.src} alt="Mobile phone with posts feed on it" />
+        <Image 
+          src={logo}
+          // width="100" // not recommended to use width and height for resizing
+          // height="100"
+          sizes="10vw" // another way to resize the image (recommended over width and height)
+          priority // tells Next.js to prioritize loading this image, lazy loading will be disabled
+          alt="Mobile phone with posts feed on it" />
       </Link>
       <nav>
         <ul>
@@ -13,7 +20,9 @@ export default function Header() {
             <Link href="/feed">Feed</Link>
           </li>
           <li>
-            <Link className='cta-link' href="/new-post">New Post</Link>
+            <Link className="cta-link" href="/new-post">
+              New Post
+            </Link>
           </li>
         </ul>
       </nav>

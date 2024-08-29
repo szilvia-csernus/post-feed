@@ -1,16 +1,34 @@
 "use client";
 
-import { useOptimistic } from 'react';
-import { formatDate } from '@/lib/format';
-import LikeButton from './like-icon';
-import { togglePostLikeStatus } from '@/actions/post-actions';
+import { useOptimistic } from "react";
+import { formatDate } from "@/lib/format";
+import LikeButton from "./like-icon";
+import { togglePostLikeStatus } from "@/actions/post-actions";
+import Image from "next/image";
+
+function imageLoader(config) {
+  // Transform the Cloudinary URL to a 200x150 image with 50% quality
+  // https://cloudinary.com/documentation/image_transformations
+  const urlStart = config.src.split("upload/")[0];
+  const urlEnd = config.src.split("upload/")[1];
+  const transformations = `w_200,q_${config.quality}`;
+  config.src = `${urlStart}upload/${transformations}/${urlEnd}`;
+  return config.src;
+}
 
 function Post({ post, action }) {
-
   return (
     <article className="post">
       <div className="post-image">
-        <img src={post.image} alt={post.title} />
+        <Image
+          loader={imageLoader}
+          src={post.image}
+          // fill
+          width={100}
+          height={80}
+          alt={post.title}
+          quality={50}
+        />
       </div>
       <div className="post-content">
         <header>
@@ -66,7 +84,7 @@ export default function Posts({ posts }) {
   async function updatePost(postId) {
     updateOptimisticPosts(postId);
     await togglePostLikeStatus(postId);
-  } 
+  }
 
   return (
     <ul className="posts">
